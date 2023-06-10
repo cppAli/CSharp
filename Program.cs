@@ -65,6 +65,8 @@ class Program
         }
     }
 
+    static int animalIdCounter = 1;
+
     static void AddAnimal(AnimalShelter shelter)
     {
         Console.WriteLine("Добавить животное");
@@ -75,8 +77,6 @@ class Program
         Console.Write("Введите свой выбор: ");
         int type = int.Parse(Console.ReadLine());
 
-        Console.Write("Ввод ID: ");
-        int id = int.Parse(Console.ReadLine());
         Console.Write("Ввод Имени: ");
         string name = Console.ReadLine();
         Console.Write("Ввод Возраст: ");
@@ -102,7 +102,9 @@ class Program
                 return;
         }
 
-        animal.Id = id;
+        animal.Id = animalIdCounter; // Устанавливаем уникальный ID для животного
+        animalIdCounter++; // Увеличиваем счетчик ID
+
         animal.Name = name;
         animal.Age = age;
 
@@ -111,35 +113,10 @@ class Program
         Console.WriteLine("Животное добавлено в приют.");
     }
 
+
     static void RemoveAnimal(AnimalShelter shelter)
     {
         Console.WriteLine("Удалить животное");
-        Console.WriteLine("1. Кошка");
-        Console.WriteLine("2. Собака");
-        Console.WriteLine("3. Птица");
-        Console.WriteLine("4. Рептилия");
-        Console.Write("Введите свой выбор: ");
-        int type = int.Parse(Console.ReadLine());
-        Animal animal;
-        switch (type)
-        {
-            case 1:
-                animal = new Cat();
-                break;
-            case 2:
-                animal = new Dog();
-                break;
-            case 3:
-                animal = new Bird();
-                break;
-            case 4:
-                animal = new Reptile();
-                break;
-            default:
-                Console.WriteLine("Недопустимый тип животного.");
-                return;
-        }
-
         Console.Write("Введите ID животного, которое нужно удалить: ");
         int id = int.Parse(Console.ReadLine());
 
@@ -154,4 +131,6 @@ class Program
             Console.WriteLine("Животное не найдено в приюте.");
         }
     }
+
+
 }
